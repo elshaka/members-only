@@ -38,6 +38,9 @@ gem 'jquery-rails'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
 
+# Faker for fake stuff (db seeds/fixtures)
+gem 'faker'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -48,8 +51,6 @@ group :development, :test do
   gem 'rspec-rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
-  # Faker for fake stuff (db seeds/fixtures)
-  gem 'faker'
 end
 
 group :development do
