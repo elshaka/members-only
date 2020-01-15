@@ -48,6 +48,8 @@ group :development, :test do
   gem 'rspec-rails'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  # Faker for fake stuff (db seeds/fixtures)
+  gem 'faker'
 end
 
 group :development do
