@@ -1,0 +1,40 @@
+class PostsController < ApplicationController
+  before_action :user_logged_in?, except: [:index]
+
+  def index
+    @posts = Post.all
+  end
+
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new post_params
+    @post.user = current_user
+    if @post.save
+      flash[:notice] = 'Post created successfully'
+      redirect_to :root
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    post = Post.find params[:id]
+    if post.user == current_user
+      post.destroy
+      flash[:notice] = 'Post deleted successfully'
+    else
+      flash[:warning] = "You're not allowed to delete other people's posts"
+    end
+
+    redirect_to :root
+  end
+
+  private
+
+    def post_params
+      params.require(:post).permit(:title, :body)
+    end
+end

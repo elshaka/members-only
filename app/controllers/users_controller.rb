@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  def index
-    @users = User.all
-  end
+  before_action :user_logged_in?, except: [:new, :create]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -18,8 +16,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
-
   def edit; end
 
   def update
@@ -32,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    log_out @user
     @user.destroy
     flash[:notice] = 'Account deleted successfully'
     redirect_to :root
@@ -44,6 +41,6 @@ class UsersController < ApplicationController
     end
 
     def set_user
-      @user = User.find params[:id]
+      @user = current_user
     end
 end
