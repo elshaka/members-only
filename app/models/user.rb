@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
@@ -18,8 +18,7 @@ class User < ApplicationRecord
   end
 
   def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -30,6 +29,7 @@ class User < ApplicationRecord
 
   def remembered?(remember_token)
     return false unless remember_digest
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   private
 
-    def downcase_email
-      self.email = email.downcase
-    end
+  def downcase_email
+    self.email = email.downcase
+  end
 end
