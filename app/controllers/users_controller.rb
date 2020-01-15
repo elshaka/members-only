@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      flash[:notice] = 'Account created successfully'
+      flash[:success] = 'Account created successfully'
       redirect_to :root
     else
       render :new
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:notice] = 'Account updated successfully'
+      flash[:success] = 'Account updated successfully'
       redirect_to :root
     else
       render :edit
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   def destroy
     log_out @user
     @user.destroy
-    flash[:notice] = 'Account deleted successfully'
+    flash[:success] = 'Account deleted successfully'
     redirect_to :root
   end
 

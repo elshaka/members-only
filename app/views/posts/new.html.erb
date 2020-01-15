@@ -1,8 +1,16 @@
-<%= form_for @post do |f| %>
-  <%= render 'error_messages' %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create new post' %>
-<% end %>
+<% provide(:title, 'Create post') %>
+<h2>Create post</h2>
+<div class="form-container">
+  <%= form_for @post do |f| %>
+    <%= render 'error_messages' %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+    <%= f.submit 'Create new post', class: 'btn btn-primary' %>
+  <% end %>
+</div>

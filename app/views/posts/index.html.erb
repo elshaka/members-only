@@ -1,25 +1,14 @@
-<h1>Members only!</h1>
-<% if logged_in? %>
-  <p><%= link_to "Log out", logout_path, method: :delete %></p>
-<% else %>
-  <p><%= link_to 'Log in', login_path %> or <%= link_to 'Sign up', signup_path %></p>
-<% end %>
+<%= render 'jumbotron' %>
 <h2>Posts</h2>
 <% if logged_in? %>
-  <p><%= link_to 'Create new post', new_post_path %></p>
+  <p class='new-post'><%= link_to 'Create new post', new_post_path, class: 'btn btn-primary btn-sm' %></p>
 <% end %>
 <% if @posts.any? %>
-  <% @posts.each do |post| %>
-    <p>Title: <%= post.title %></p>
-    <p>Body: <%= post.body %></p>
-    <% if logged_in? %>
-      <p>Author: <%= post.user.name %></p>
+  <div class="posts">
+    <% @posts.each do |post| %>
+      <%= render 'post', post: post %>
     <% end %>
-    <% if post.user == current_user %>
-      <p><%= link_to "Delete post", post, method: :delete %></p>
-    <% end %>
-    _
-  <% end %>
+  </div>
 <% else %>
   <p>No posts to show</p>
 <% end %>
