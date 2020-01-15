@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :user_logged_in?, except: [:index]
 
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def new

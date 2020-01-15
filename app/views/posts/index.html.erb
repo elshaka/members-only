@@ -5,9 +5,11 @@
 <% end %>
 <% if @posts.any? %>
   <div class="posts">
+    <%= render 'pagination', posts: @posts %>
     <% @posts.each do |post| %>
       <%= render 'post', post: post %>
     <% end %>
+    <%= render 'pagination', posts: @posts %>
   </div>
 <% else %>
   <p>No posts to show</p>
