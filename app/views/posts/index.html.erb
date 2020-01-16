@@ -1,0 +1,16 @@
+<%= render 'jumbotron' %>
+<h2>Posts</h2>
+<% if logged_in? %>
+  <p class='new-post'><%= link_to 'Create new post', new_post_path, class: 'btn btn-primary btn-sm' %></p>
+<% end %>
+<% if @posts.any? %>
+  <div class="posts">
+    <%= render 'pagination', posts: @posts %>
+    <% @posts.each do |post| %>
+      <%= render 'post', post: post %>
+    <% end %>
+    <%= render 'pagination', posts: @posts %>
+  </div>
+<% else %>
+  <p>No posts to show</p>
+<% end %>
