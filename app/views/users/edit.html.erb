@@ -1,0 +1,11 @@
+<% provide(:title, 'Account settings') %>
+<h2>Account settings</h2>
+<div class="form-container">
+  <%= form_for @user, url: account_path do |f| %>
+    <%= render 'form', f: f %>
+    <%= f.submit 'Update settings', class: 'btn btn-primary' %>
+  <% end %>
+  <div class="delete-box">
+    <%= link_to 'Delete account', account_path, method: :delete, data: { confirm: 'Are you sure? All your posts will be deleted as well' }, class: 'btn btn-danger' %>
+  </div>
+</div>

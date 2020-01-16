@@ -1,24 +1,17 @@
-# README
+# Members Only Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project constists on a simple Rails app with basic authentication using Rails' built-in has_secure_password feature, that allows users to create posts.
 
-Things you may want to cover:
+Anyone can see the posts but only users with an account can create posts and see the author of each post.
 
-* Ruby version
+A live version of the project can be seen [here](https://members-only-elshaka.herokuapp.com)
 
-* System dependencies
+# Technologies used
 
-* Configuration
+- Ruby/Rails
+- Bootstrap
+- will_paginate gem for pagination
 
-* Database creation
+# Author
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [Eleazar Meza](https://github.com/elshaka/)

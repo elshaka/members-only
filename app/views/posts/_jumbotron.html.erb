@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1 class="display-4">Members Only!</h1>
+  <p class="lead">Welcome to the Members Only app, a simple Rails app to post stuff</p>
+  <% unless logged_in? %>
+    <hr class="my-4">
+    <p>You can see other people's posts but you can only who posted them if you're a member</p>
+    <p><%= link_to 'Not a member? Click here to become one!', signup_path, class: 'btn btn-primary btn', role: 'button' %></p>
+    Already a member? <%= link_to 'Log in', login_path %>
+  <% end %>
+</div>
